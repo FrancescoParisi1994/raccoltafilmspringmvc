@@ -27,7 +27,9 @@
 				</div>
 		  		<div class="alert alert-danger  alert-dismissible fade show  ${errorMessage==null?'d-none':'' }" role="alert">
 				  ${errorMessage}
-				  <a href="${pageContext.request.contextPath}/film/show/${film_error_attr }">lista film</a>
+				  <p>Per andare alla lista di film collegati cliccare
+				  	<a href="${pageContext.request.contextPath}/film/error/${film_error_attr.id}">qui</a>
+				  </p>
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
 				<div class="alert alert-danger alert-dismissible fade show d-none" role="alert">

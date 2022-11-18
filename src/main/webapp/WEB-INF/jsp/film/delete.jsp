@@ -80,7 +80,7 @@
 			    
 			    <div class='card-footer'>
 			    	<form action="${pageContext.request.contextPath}/film/cancel" method="post">
-			    		<input type="hidden" value="${delete_film_attr.regista.id}" name="idFilm">
+			    		<input type="hidden" value="${delete_film_attr.id}" name="idFilm">
 			    		<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 				        <a href="${pageContext.request.contextPath }/film/" class='btn btn-outline-secondary' style='width:80px'>
 				            <i class='fa fa-chevron-left'></i> Back

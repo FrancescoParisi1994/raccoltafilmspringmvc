@@ -1,6 +1,8 @@
 package it.prova.raccoltafilmspringmvc.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -138,10 +140,24 @@ public class FilmController {
 		return "redirect:/film";
 	}
 	
-	//@GetMapping("/error/{idRegista}")
-	//public String errorList(@PathVariable(required = true) Long idRegista, Model model) {
-		//model.addAttribute("show_film_attr",
-		//	FilmDTO.buildFilmDTOFromModel(registaService.caricaSingoloElementoConFilms(idRegista).getFilms(), true));
-		//return "film/show";
-	//}
+	@GetMapping("/error/{idRegista}")
+	public String errorList(@PathVariable(required = true) Long idRegista, Model model) {
+		List<Film> result=new ArrayList<>();
+		registaService.caricaSingoloElementoConFilms(idRegista).getFilms().forEach(i->result.add(i));
+		model.addAttribute("film_list_attribute",
+			FilmDTO.createFilmDTOListFromModelList(result, true));
+		model.addAttribute("id_regista_attr", idRegista);
+		return "film/listRegista";
+	}
+	
+	@PostMapping("/deleteFilmRegista")
+	public String deleteFilmRegista(@RequestParam(required = true) Long idRegista,
+			RedirectAttributes redirectAttrs) {
+		
+		registaService.caricaSingoloElementoConFilms(idRegista).getFilms().forEach(i->filmService.rimuovi(i.getId()));
+		
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/regista";
+	}
+	
 }
